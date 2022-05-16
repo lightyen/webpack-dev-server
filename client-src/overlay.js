@@ -1,20 +1,19 @@
 // The error overlay is inspired (and mostly copied) from Create React App (https://github.com/facebookincubator/create-react-app)
 // They, in turn, got inspired by webpack-hot-middleware (https://github.com/glenjamin/webpack-hot-middleware).
 
-import ansiHTML from "ansi-html-community";
+import { createConverter } from "ansi-html-string";
 import { encode } from "html-entities";
 
 const colors = {
-  reset: ["transparent", "transparent"],
-  black: "181818",
-  red: "E36049",
-  green: "B3CB74",
-  yellow: "FFD080",
-  blue: "7CAFC2",
-  magenta: "7FACCA",
-  cyan: "C3C2EF",
-  lightgrey: "EBE7E3",
-  darkgrey: "6D7891",
+  black: "#181818",
+  red: "#E36049",
+  green: "#B3CB74",
+  yellow: "#FFD080",
+  blue: "#7CAFC2",
+  magenta: "#C3C2EF",
+  cyan: "#73BFB1",
+  white: "#EBE7E3",
+  gray: "#6D7891",
 };
 
 /** @type {HTMLIFrameElement | null | undefined} */
@@ -26,7 +25,13 @@ let onLoadQueue = [];
 /** @type {TrustedTypePolicy | undefined} */
 let overlayTrustedTypesPolicy;
 
-ansiHTML.setColors(colors);
+const ansiHTML = createConverter({
+  minimumContrastRatio: 1,
+  theme: {
+    foreground: "#E8E8E8",
+    ...colors,
+  },
+}).toHtml;
 
 /**
  * @param {string | null} trustedTypesPolicyName

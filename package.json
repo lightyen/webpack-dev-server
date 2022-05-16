@@ -41,7 +41,7 @@
     "@types/serve-index": "^1.9.1",
     "@types/sockjs": "^0.3.33",
     "@types/ws": "^8.5.1",
-    "ansi-html-community": "^0.0.8",
+    "ansi-html-string": "^1.2.3",
     "bonjour-service": "^1.0.11",
     "chokidar": "^3.5.3",
     "colorette": "^2.0.10",
